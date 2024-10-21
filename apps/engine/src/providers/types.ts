@@ -12,6 +12,8 @@ export type ProviderParams = {
     PLAID_CLIENT_ID: string;
     PLAID_SECRET: string;
     PLAID_ENVIRONMENT: string;
+    PLUGGY_CLIENT_ID: string;
+    PLUGGY_SECRET: string;
   };
 };
 
@@ -63,6 +65,7 @@ export type GetAccountsRequest = {
   id?: string; // GoCardLess
   accessToken?: string; // Teller & Plaid
   institutionId?: string; // Plaid
+  itemId?: "Pluggy";
 };
 
 export type GetAccountBalanceRequest = {
@@ -78,6 +81,7 @@ export type GetAccountBalanceResponse = {
 export type DeleteAccountsRequest = {
   accountId?: string; // GoCardLess
   accessToken?: string; // Teller & Plaid
+  itemId?: string; // Pluggy
 };
 
 export type GetTransactionsResponse = Transaction[];

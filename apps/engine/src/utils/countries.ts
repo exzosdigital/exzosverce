@@ -36,6 +36,8 @@ export const PLAID_COUNTRIES = ["US", "CA"];
 
 export const TELLER_COUNTRIES = ["US"];
 
+export const PLUGGY_COUNTRIES = ["BR"];
+
 const combinedCountries = [
   ...new Set([
     ...GOCARDLESS_COUNTRIES,
