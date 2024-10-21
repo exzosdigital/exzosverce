@@ -8,6 +8,7 @@ export type AccountType =
 export function getType(type: string): AccountType {
   switch (type) {
     case "depository":
+    case "bank": // pluggy
       return "depository";
     case "credit":
       return "credit";

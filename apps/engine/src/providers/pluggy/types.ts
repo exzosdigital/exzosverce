@@ -1,11 +1,11 @@
 import type {
   Account as AccountGetResponse,
+  Connector as Institution,
   PageResponse,
   Transaction,
 } from "pluggy-sdk";
 
 type TransactionsGetResponse = PageResponse<Transaction>;
-type AccountsGetResponse = PageResponse<AccountGetResponse>;
 
 export type GetStatusResponse = {
   page: {
@@ -29,16 +29,36 @@ export type GetAccountsRequest = {
   itemId: string;
 };
 
-export type GetAccountsResponse = AccountsGetResponse["results"];
+type AccountWithInstitution = AccountGetResponse & {
+  institution: Institution;
+};
+
+export type GetAccountsResponse = AccountWithInstitution[];
 
 export type GetAccountBalanceRequest = {
   accountId: string;
 };
 
-export type GetAccountBalanceResponse = AccountGetResponse["balance"];
+export type GetAccountBalanceResponse = Pick<
+  AccountGetResponse,
+  "balance" | "currencyCode"
+>;
 
 export type GetTransactionsRequest = {
   accountId: string;
 };
 
 export type GetTransactionsResponse = TransactionsGetResponse["results"];
+
+export type TransformTransactionPayload = {
+  transaction: Transaction;
+};
+
+export type TransformAccountPayload = AccountWithInstitution;
+
+export type TransformAccountBalancePayload = Pick<
+  AccountGetResponse,
+  "balance" | "currencyCode"
+>;
+
+export type TransformInstitutionPayload = Institution;

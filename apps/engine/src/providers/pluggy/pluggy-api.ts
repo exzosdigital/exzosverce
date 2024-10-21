@@ -56,9 +56,10 @@ export class PluggyApi {
     accountId,
   }: GetAccountBalanceRequest): Promise<GetAccountBalanceResponse | undefined> {
     try {
-      const account = await this.#client.fetchAccount(accountId);
+      const { balance, currencyCode } =
+        await this.#client.fetchAccount(accountId);
 
-      return account.balance;
+      return { balance, currencyCode };
     } catch (error) {
       const parsedError = isError(error);
 
@@ -73,8 +74,12 @@ export class PluggyApi {
   }: GetAccountsRequest): Promise<GetAccountsResponse | undefined> {
     try {
       const accounts = await this.#client.fetchAccounts(itemId);
+      const item = await this.#client.fetchItem(itemId);
 
-      return accounts.results;
+      return accounts.results.map((account) => ({
+        ...account,
+        institution: item.connector,
+      }));
     } catch (error) {
       const parsedError = isError(error);
 
@@ -109,10 +114,10 @@ export class PluggyApi {
       ? [params.countryCode]
       : this.#countryCodes;
 
-    const institutions = this.#client.fetchConnectors({
+    const institutions = await this.#client.fetchConnectors({
       countries: countryCode,
     });
 
-    return institutions;
+    return institutions.results;
   }
 }

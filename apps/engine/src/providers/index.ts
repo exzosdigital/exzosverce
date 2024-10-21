@@ -2,6 +2,7 @@ import { logger } from "@/utils/logger";
 import { withRetry } from "@/utils/retry";
 import { GoCardLessProvider } from "./gocardless/gocardless-provider";
 import { PlaidProvider } from "./plaid/plaid-provider";
+import { PluggyProvider } from "./pluggy/pluggy-provider";
 import { TellerProvider } from "./teller/teller-provider";
 import type {
   DeleteAccountsRequest,
@@ -16,7 +17,12 @@ import type {
 export class Provider {
   #name?: string;
 
-  #provider: PlaidProvider | TellerProvider | GoCardLessProvider | null = null;
+  #provider:
+    | PlaidProvider
+    | TellerProvider
+    | GoCardLessProvider
+    | PluggyProvider
+    | null = null;
 
   constructor(params?: ProviderParams) {
     this.#name = params?.provider;
@@ -30,6 +36,9 @@ export class Provider {
         break;
       case "plaid":
         this.#provider = new PlaidProvider(params);
+        break;
+      case "pluggy":
+        this.#provider = new PluggyProvider(params);
         break;
       default:
     }

@@ -1,0 +1,65 @@
+// Bun Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Transform transaction 1`] = `
+{
+  "amount": -1500,
+  "balance": null,
+  "category": "Transfers",
+  "currency": "BRL",
+  "currency_rate": null,
+  "currency_source": null,
+  "date": "2020-10-14T00:00:00.000Z",
+  "description": "TED Example",
+  "id": "6ec156fe-e8ac-4d9a-a4b3-7770529ab01c",
+  "method": "CREDIT",
+  "name": "Tiago Rodrigues Santos",
+  "status": "posted",
+}
+`;
+
+exports[`Transform bank account 1`] = `
+{
+  "balance": {
+    "amount": 120950,
+    "currency": "BRL",
+  },
+  "currency": "BRL",
+  "enrollment_id": null,
+  "id": "a658c848-e475-457b-8565-d1fffba127c4",
+  "institution": {
+    "id": "601",
+    "logo": "https://cdn.pluggy.ai/assets/connector-icons/201.svg",
+    "name": "Itaú",
+    "provider": "pluggy",
+  },
+  "name": "Conta Corrente",
+  "type": "depository",
+}
+`;
+
+exports[`Transform credit account 1`] = `
+{
+  "balance": {
+    "amount": 120950,
+    "currency": "BRL",
+  },
+  "currency": "BRL",
+  "enrollment_id": null,
+  "id": "a658c848-e475-457b-8565-d1fffba127c4",
+  "institution": {
+    "id": "601",
+    "logo": "https://cdn.pluggy.ai/assets/connector-icons/201.svg",
+    "name": "Itaú",
+    "provider": "pluggy",
+  },
+  "name": "Mastercard Black",
+  "type": "credit",
+}
+`;
+
+exports[`Transform account balance 1`] = `
+{
+  "amount": 2000,
+  "currency": "BRL",
+}
+`;
